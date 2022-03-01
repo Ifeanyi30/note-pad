@@ -1,25 +1,29 @@
-import logo from './logo.svg';
+import { useObserver } from 'mobx-react';
 import './App.css';
+import { NewNoteForm } from './newNotesForm';
+import { useNotesStore } from './notesContext';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  const notesStore = useNotesStore();
+  const cursor = {
+    cursor: 'pointer'
+  }
+
+  return useObserver( () => (
+    <>
+      <ul>
+        {
+          notesStore.notes.map(note => (
+            <li
+            style={cursor}
+            onClick={() => notesStore.removeNote(note.id)}
+            key={note.id}>{note.text}</li>
+          ))
+        }
+      </ul>
+      <NewNoteForm/>
+    </>
+  ));
 }
 
 export default App;
