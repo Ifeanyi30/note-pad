@@ -2,7 +2,7 @@
 
 The Note pad app uses Mobx to manage states within the function component (with states managed with built-in and custom hooks) to share data.
 
-## Running and Insstalling the App
+## Running and Installing the App
 
 To tryout the app, clone the repository or download the zip file, open the folder and run the command;
 
